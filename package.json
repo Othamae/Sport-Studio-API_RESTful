@@ -1,0 +1,22 @@
+{
+  "name": "poledance-api",
+  "version": "1.0.0",
+  "description": "This API provides endpoints to manage and display information about poledance classes, instructors and students.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Veronica Conesa",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }, 
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
+  }
+}
