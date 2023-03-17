@@ -3,6 +3,7 @@ require('dotenv').config()
 const cors = require('cors')
 const { dbConnetion } = require('./mongo.js')
 const classesRouter = require('./routes/classes.js')
+const instructorsRouter = require('./routes/instructors')
 const apiDoc = require('./doc/app-doc.js')
 
 const app = express()
@@ -12,7 +13,8 @@ app.use(express.json())
 const PORT = process.env.PORT || 4000
 
 app.use('/api', classesRouter)
-app.use('/api-docs', apiDoc)
+app.use('/api', instructorsRouter)
+app.use('/api/doc', apiDoc)
 
 app.get('/api', (req, res) => {
   res.send('Hello Wordl!')
