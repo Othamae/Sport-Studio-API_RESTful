@@ -11,14 +11,27 @@ const classScheme = new Schema(
         type: Number
       },
       start: {
-        type: Date
+        type: String,
+        validate: {
+          validator: function (v) {
+            return /^\d{2}\/\d{2}\/\d{4}$/.test(v) // Validar formato dd/mm/aaaa
+          },
+          message: props => `${props.value} is not a valid date format! (DD/MM/YYYY)`
+        }
       },
       end: {
-        type: Date
+        type: String,
+        validate: {
+          validator: function (v) {
+            return /^\d{2}\/\d{2}\/\d{4}$/.test(v) // Validar formato dd/mm/aaaa
+          },
+          message: props => `${props.value} is not a valid date format! (DD/MM/YYYY)`
+        }
       }
     },
     time: {
-      type: Date
+      type: String,
+      match: /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/
     },
     instructor: {
       type: String
