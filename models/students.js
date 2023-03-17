@@ -19,8 +19,8 @@ const StudentScheme = new Schema(
       select: false
     },
     role: {
-      type: ['user', 'admin'],
-      default: 'user'
+      type: ['adult', 'child'],
+      default: 'adult'
     }
   },
   {
