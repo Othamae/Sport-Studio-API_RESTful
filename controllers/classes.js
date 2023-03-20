@@ -1,25 +1,30 @@
 
-// const { Class } = require('../models/classes')
+const Class = require('../models/classes.js')
+// const { matchedData } = require('express-validator')
+const { handleHttpError } = require('../utils/handleError')
 
 const getClasses = async (req, res) => {
   try {
-    // const user = req.user
-    // const data = await Class.findAllData({}) // ponemos await para esperar xq es una promesa
-    res.send('GET ALL CLASSESS')
+    const data = await Class.find({})
+    res.send({ data })
   } catch (e) {
-    console.log('ESTE ES EL ERROR')
     console.log(e)
+    handleHttpError(res, 'ERROR_GETTING_CLASSES')
   }
 }
 
 const addClass = async (req, res) => {
   try {
-    res.send('add new class')
+    const body = req.body
+    console.log(body)
+    const data = await Class.create(body)
+    res.send({ data })
   } catch (e) {
-    console.log('ESTE ES EL ERROR')
     console.log(e)
+    handleHttpError(res, 'ERROR_CREATING_CLASS')
   }
 }
+
 const getClass = async (req, res) => {
   try {
     res.send('get class by id')
