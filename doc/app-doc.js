@@ -13,13 +13,28 @@ const swaggerOptions = {
       description: 'Documentation of Poledance Studio API',
       contact: {
         name: 'Veronica Conesa',
-        url: 'https://www.linkedin.com/in/veronica-conesa-gomez/'
+        url: 'https://www.linkedin.com/in/veronica-conesa-gomez/',
+        email: 'vero.gconesa@gmail.com'
       }
     },
     servers: [
       {
         url: `http://localhost:${process.env.PORT}`,
         description: 'Development server'
+      }
+    ],
+    tags: [
+      {
+        name: 'Classes',
+        description: 'Everything about the classes'
+      },
+      {
+        name: 'Instructors',
+        description: 'Everything about the instructors'
+      },
+      {
+        name: 'Students',
+        description: 'Everything about the students'
       }
     ],
     components: {
