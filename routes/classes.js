@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { getClasses, addClass, getClass, updateClass, deleteClass } = require('../controllers/classes')
+const { validatorGetClass, validatorCreateClass } = require('../validators/classes')
 
 /**
  * @swagger
@@ -48,7 +49,7 @@ router.get('/classes', getClasses)
  *          description: Invalid input!
  *
  */
-router.post('/classes', addClass)
+router.post('/classes', validatorCreateClass, addClass)
 
 /**
  * @swagger
@@ -67,7 +68,7 @@ router.post('/classes', addClass)
  *               items:
  *                 $ref: '#components/schemas/Class'
  */
-router.get('/classes/:id', getClass)
+router.get('/classes/:id', validatorGetClass, getClass)
 
 /**
  * @swagger
@@ -100,7 +101,7 @@ router.get('/classes/:id', getClass)
  *          description: Validation exception
  *
  */
-router.put('/classes/:id', updateClass)
+router.put('/classes/:id', validatorCreateClass, validatorGetClass, updateClass)
 
 /**
  * @swagger
@@ -144,6 +145,6 @@ router.put('/classes/:id', updateClass)
  *
  *
  */
-router.delete('/classes/:id', deleteClass)
+router.delete('/classes/:id', validatorGetClass, deleteClass)
 
 module.exports = router
