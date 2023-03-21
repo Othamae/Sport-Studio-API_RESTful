@@ -44,14 +44,6 @@ const swaggerOptions = {
           properties: {
             _id: { type: 'string' },
             name: { type: 'string' },
-            duration: {
-              type: 'object',
-              properties: {
-                lections: { type: 'number' },
-                start: { type: 'string', format: 'date', pattern: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' },
-                end: { type: 'string', format: 'date', pattern: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' }
-              }
-            },
             time: { type: 'string', format: 'time', pattern: '^([0-1][0-9]|[2][0-3]):([0-5][0-9])$' },
             instructor: { type: 'string' },
             level: {
@@ -60,7 +52,15 @@ const swaggerOptions = {
                 student: { type: 'string', enum: ['adult', 'child'] }
               }
             },
-            capacity: { type: 'number' }
+            capacity: { type: 'number' },
+            duration: {
+              type: 'object',
+              properties: {
+                lections: { type: 'number' },
+                start: { type: 'string', format: 'date', pattern: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' },
+                end: { type: 'string', format: 'date', pattern: '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' }
+              }
+            }
           }
         },
         User: {
