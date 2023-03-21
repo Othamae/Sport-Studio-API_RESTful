@@ -1,6 +1,6 @@
 
 const Class = require('../models/classes.js')
-const { handleHttpError } = require('../utils/handleError')
+const { handleHttpError } = require('../middlewares/handleError')
 
 const getClasses = async (req, res) => {
   try {

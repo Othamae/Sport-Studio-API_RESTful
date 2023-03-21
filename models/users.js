@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-// const mongooseDelete = require('mongoose-delete')
 const { Schema } = mongoose
 
 const userSchema = new Schema(

@@ -7,6 +7,7 @@ const instructorsRouter = require('./routes/instructors')
 const studentsRouter = require('./routes/students')
 const userRouter = require('./routes/users')
 const apiDoc = require('./doc/app-doc.js')
+const notFound = require('./middlewares/notFound.js')
 
 const app = express()
 app.use(cors())
@@ -23,6 +24,8 @@ app.use('/api/doc', apiDoc)
 app.get('/api', (req, res) => {
   res.send('Hello Wordl!')
 })
+
+app.use(notFound)
 
 app.listen(PORT, () => {
   console.log(`App running on http://localhost:${PORT}`)
