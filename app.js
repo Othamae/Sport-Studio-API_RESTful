@@ -27,7 +27,9 @@ app.get('/api', (req, res) => {
 
 app.use(notFound)
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`App running on http://localhost:${PORT}`)
 })
 dbConnetion()
+
+module.exports = { app, server }
