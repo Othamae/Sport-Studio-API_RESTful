@@ -39,10 +39,8 @@ const updateClass = async (req, res) => {
   try {
     const id = req.params.id
     const body = req.body
-    const classToUpdate = await Class.findById(id)
-    await Class.updateOne(classToUpdate, body)
-    const updatedClass = await Class.findById(id)
-    res.send({ updatedClass })
+    const data = await Class.findByIdAndUpdate(id, body, { new: true })
+    res.send({ data })
   } catch (e) {
     console.log(e)
     handleHttpError(res, 'ERROR_UPDATING_CLASS')
