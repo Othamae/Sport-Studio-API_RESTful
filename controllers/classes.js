@@ -27,26 +27,35 @@ const addClass = async (req, res) => {
 
 const getClass = async (req, res) => {
   try {
-    res.send('get class by id')
+    const id = req.params.id
+    const data = await Class.findById(id)
+    res.send({ data })
   } catch (e) {
-    console.log('ESTE ES EL ERROR')
     console.log(e)
+    handleHttpError(res, 'ERROR_GETTING_CLASS_BY_ID')
   }
 }
+
 const updateClass = async (req, res) => {
   try {
-    res.send('update class')
+    const id = req.params.id
+    const body = req.body
+    const data = await Class.findOneAndUpdate(id, body)
+    res.send({ data })
   } catch (e) {
-    console.log('ESTE ES EL ERROR')
     console.log(e)
+    handleHttpError(res, 'ERROR_UPDATING_CLASS')
   }
 }
+
 const deleteClass = async (req, res) => {
   try {
-    res.send('delete class')
+    const id = req.params.id
+    const data = await Class.deleteOne({ _id: id })
+    res.send({ data })
   } catch (e) {
-    console.log('ESTE ES EL ERROR')
     console.log(e)
+    handleHttpError(res, 'ERROR_DELETING_CLASS')
   }
 }
 module.exports = { getClasses, addClass, getClass, updateClass, deleteClass }
