@@ -37,8 +37,8 @@ const validatorCreateClass = [
 const validatorGetClass = [
   check('id')
     .exists()
-    .notEmpty()
-    .isMongoId(),
+    .notEmpty(),
+  // .isMongoId(),
   (req, res, next) => {
     return validateResult(req, res, next)
   }

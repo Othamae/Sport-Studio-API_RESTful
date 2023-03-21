@@ -1,6 +1,5 @@
 
 const Class = require('../models/classes.js')
-// const { matchedData } = require('express-validator')
 const { handleHttpError } = require('../utils/handleError')
 
 const getClasses = async (req, res) => {
@@ -40,8 +39,10 @@ const updateClass = async (req, res) => {
   try {
     const id = req.params.id
     const body = req.body
-    const data = await Class.findOneAndUpdate(id, body)
-    res.send({ data })
+    const classToUpdate = await Class.findById(id)
+    await Class.updateOne(classToUpdate, body)
+    const updatedClass = await Class.findById(id)
+    res.send({ updatedClass })
   } catch (e) {
     console.log(e)
     handleHttpError(res, 'ERROR_UPDATING_CLASS')

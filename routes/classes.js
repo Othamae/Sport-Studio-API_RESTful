@@ -34,7 +34,16 @@ router.get('/classes', getClasses)
  *        content:
  *          application/json:
  *             schema:
- *                $ref: '#components/schemas/Class'
+ *                example:
+ *                  name: Class1
+ *                  time: 18:00
+ *                  instructor: Instructor1
+ *                  level: adult
+ *                  capacity: 9
+ *                  duration:
+ *                      lections: 12
+ *                      start: 22/03/2023
+ *                      end: 07/06/2023
  *     required: true
  *     responses:
  *       201:
@@ -53,11 +62,17 @@ router.post('/classes', validatorCreateClass, addClass)
 
 /**
  * @swagger
- * /api/classes/{id}:
+ * /api/classes/{classId} :
  *  get:
  *     summary: Find a class by ID
  *     description: Returns a single class
  *     tags: [Classes]
+ *     parameters:
+ *       - name: classId
+ *         in: path
+ *         description: ID of the class that needs to be fetched
+ *         required: true
+ *
  *     responses:
  *       200:
  *         description: The detail of a single class
@@ -72,7 +87,7 @@ router.get('/classes/:id', validatorGetClass, getClass)
 
 /**
  * @swagger
- * /api/classes/{id}:
+ * /api/classes/{classId}:
  *  put:
  *     summary: Update an existing class
  *     description: Update an existing class by ID
@@ -82,8 +97,22 @@ router.get('/classes/:id', validatorGetClass, getClass)
  *        content:
  *          application/json:
  *             schema:
- *                $ref: '#components/schemas/Class'
+ *                example:
+ *                  name: UPDATED Class
+ *                  time: 20:00
+ *                  instructor: UPDATED Instructor
+ *                  level: child
+ *                  capacity: 10
+ *                  duration:
+ *                      lections: 12
+ *                      start: 22/03/2023
+ *                      end: 07/06/2023
  *        required: true
+ *     parameters:
+ *       - name: classId
+ *         in: path
+ *         description: ID of the class that needs to be fetched
+ *         required: true
  *     responses:
  *       200:
  *         description: Class successfully updated!
@@ -105,32 +134,16 @@ router.put('/classes/:id', validatorCreateClass, validatorGetClass, updateClass)
 
 /**
  * @swagger
- * /api/classes/{id}:
+ * /api/classes/{classId}:
  *  delete:
  *     summary: Delete a class
  *     description: Delete an existing class by ID
  *     tags: [Classes]
  *     parameters:
- *       - name: api_key
- *         in: header
- *         description: ''
- *         required: false
- *         schema:
- *              type: string
  *       - name: classId
- *         in: header
- *         description: ''
+ *         in: path
+ *         description: ID of the class that needs to be deleted
  *         required: true
- *         schema:
- *              type: integer
- *              format: int64
- *     requestBody:
- *        description: Update an existing class by ID
- *        content:
- *          application/json:
- *             schema:
- *                $ref: '#components/schemas/Class'
- *        required: true
  *     responses:
  *       200:
  *         description: Class successfully deleted!
