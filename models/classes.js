@@ -6,6 +6,20 @@ const classScheme = new Schema(
     name: {
       type: String
     },
+    instructor: {
+      type: String
+    },
+    level: {
+      type: String,
+      student: ['adult', 'child']
+    },
+    capacity: {
+      type: Number
+    },
+    time: {
+      type: String,
+      match: /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/
+    },
     duration: {
       lections: {
         type: Number
@@ -28,20 +42,6 @@ const classScheme = new Schema(
           message: props => `${props.value} is not a valid date format! (DD/MM/YYYY)`
         }
       }
-    },
-    time: {
-      type: String,
-      match: /^([0-1][0-9]|[2][0-3]):([0-5][0-9])$/
-    },
-    instructor: {
-      type: String
-    },
-    level: {
-      type: String,
-      student: ['adult', 'child']
-    },
-    capacity: {
-      type: Number
     }
 
   },
