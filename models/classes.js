@@ -51,4 +51,13 @@ const classScheme = new Schema(
   }
 )
 
+classScheme.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id
+    delete returnedObject.createdAt
+    delete returnedObject.updatedAt
+    delete returnedObject._id
+  }
+})
+
 module.exports = mongoose.model('Class', classScheme)
