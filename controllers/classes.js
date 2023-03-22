@@ -16,7 +16,7 @@ const addClass = async (req, res) => {
   try {
     const body = req.body
     const data = await Class.create(body)
-    res.send({ data })
+    res.status(201).send({ data })
   } catch (e) {
     console.log(e)
     handleHttpError(res, 'ERROR_CREATING_CLASS')
