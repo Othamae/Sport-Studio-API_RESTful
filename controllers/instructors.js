@@ -24,7 +24,7 @@ const addInstructor = async (req, res) => {
       password: hash
     })
     const newInstructor = await Instructor.create(instructor)
-    res.send({ newInstructor })
+    res.status(201).send({ newInstructor })
   } catch (e) {
     console.log(e)
     handleHttpError(res, 'ERROR_CREATING_INSTRUCTOR')
