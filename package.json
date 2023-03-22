@@ -12,6 +12,7 @@
   "author": "Veronica Conesa",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -31,7 +32,7 @@
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json",
-    "env" :{
+    "env": {
       "jest": true
     }
   },
