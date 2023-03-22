@@ -4,7 +4,7 @@ const { encrypt } = require('../middlewares/handlePassword')
 
 const getAllInstructors = async (req, res) => {
   try {
-    const data = await Instructor.find({})
+    const data = await Instructor.find({}).populate('classes', { instructor: 0 })
     res.send({ data })
   } catch (e) {
     console.log(e)
@@ -34,7 +34,7 @@ const addInstructor = async (req, res) => {
 const getInstructor = async (req, res) => {
   try {
     const { id } = req.params
-    const data = await Instructor.findById(id)
+    const data = await Instructor.findById(id).populate('classes', { instructor: 0 })
     res.send({ data })
   } catch (e) {
     console.log(e)

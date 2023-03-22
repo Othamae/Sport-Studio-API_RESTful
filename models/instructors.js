@@ -14,8 +14,7 @@ const instructorSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
-      select: false
+      required: true
     },
     classes: [{
       type: Schema.Types.ObjectId,
