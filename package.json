@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env MODE_ENV=development nodemon app.js",
     "start": "cross-env MODE_ENV=production node app.js",
-    "test": "cross-env MODE_ENV=test jest --verbose --silent --detectOpenHandles",
+    "test": "cross-env MODE_ENV=test PORT=1234 jest --verbose --silent --detectOpenHandles",
     "test-watch": "npm run test -- --watch"
   },
   "author": "Veronica Conesa",
