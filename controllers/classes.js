@@ -15,7 +15,6 @@ const getClasses = async (req, res) => {
 const addClass = async (req, res) => {
   try {
     const body = req.body
-    console.log(body)
     const data = await Class.create(body)
     res.send({ data })
   } catch (e) {
