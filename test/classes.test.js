@@ -61,7 +61,7 @@ describe('POST /api/classes', () => {
     await api
       .post('/api/classes')
       .send(newClass)
-      .expect(200)
+      .expect(201)
       .expect('Content-Type', /application\/json/)
 
     const response = await api.get('/api/classes')
