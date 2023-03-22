@@ -35,7 +35,16 @@ const userSchema = new Schema(
   }
 )
 
-// userSchema.plugin(mongooseDelete, { overrideMethods: 'all' })
+userSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id
+    delete returnedObject.createdAt
+    delete returnedObject.updatedAt
+    delete returnedObject._id
+
+    delete returnedObject.password
+  }
+})
 
 const User = mongoose.model('User', userSchema)
 

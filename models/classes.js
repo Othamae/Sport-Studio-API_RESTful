@@ -41,7 +41,15 @@ const classScheme = new Schema(
           },
           message: props => `${props.value} is not a valid date format! (DD/MM/YYYY)`
         }
-      }
+      },
+      instructor: {
+        type: Schema.Types.ObjectId,
+        ref: 'Instructor'
+      },
+      students: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Student'
+      }]
     }
 
   },
