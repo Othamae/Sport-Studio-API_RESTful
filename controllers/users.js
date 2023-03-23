@@ -1,5 +1,6 @@
 const { compare } = require('../middlewares/handlePassword')
 const Instructor = require('../models/instructors')
+const User = require('../models/users')
 const { handleHttpError } = require('../middlewares/handleError')
 const { tokenSign } = require('../middlewares/handleJWT')
 
@@ -32,10 +33,17 @@ const userLogin = async (req, res) => {
 
 const userRegister = async (req, res) => {
   try {
-    res.send('USER REGISTER')
+    const newUser = req.user
+    const email = newUser.email
+    const checkingEmail = await User.findOne({ email })
+    if (checkingEmail) {
+      return res.status(400).send('EMAIL_ALREADY_EXIST')
+    }
+    const userCreated = await User.create(newUser)
+    res.status(201).send({ userCreated })
   } catch (e) {
-    console.log('ESTE ES EL ERROR')
     console.log(e)
+    handleHttpError(res, `ERROR_CREATING_${req.user.role}`)
   }
 }
 

@@ -14,8 +14,7 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
-      select: false
+      required: true
     },
     role: {
       type: String,
@@ -26,6 +25,15 @@ const userSchema = new Schema(
       type: String,
       enum: ['adult', 'child'],
       default: 'adult'
+    },
+    classes: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Class'
+    }
+    ],
+    isAdmin: {
+      type: Boolean,
+      default: false
     }
 
   },

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { userLogin, userRegister, userLogout } = require('../controllers/users')
+const { checkRole, checkUserRole } = require('../middlewares/checkRole')
 
 /**
  * @swagger
@@ -9,9 +10,9 @@ const { userLogin, userRegister, userLogout } = require('../controllers/users')
  *     summary: Logs user into the system
  *     tags: [Users]
  *     parameters:
- *       - name: username
+ *       - name: email
  *         in: query
- *         description: The user name for login
+ *         description: The email for login
  *         required: true
  *         schema:
  *           type: string
@@ -33,7 +34,7 @@ const { userLogin, userRegister, userLogout } = require('../controllers/users')
  *       400:
  *         description: Invalid username/password supplied
  */
-router.get('/user/login', userLogin)
+router.get('/user/login', checkRole, userLogin)
 
 /**
  * @swagger
@@ -101,7 +102,7 @@ router.get('/user/login', userLogin)
  *                   description: Error code
  *                   example: ERR500
  */
-router.post('/user/register', userRegister)
+router.post('/user/register', checkUserRole, userRegister)
 
 /**
  * @swagger
