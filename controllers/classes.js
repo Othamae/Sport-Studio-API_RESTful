@@ -21,16 +21,11 @@ const addClass = async (req, res) => {
     const instructor = await Instructor.findById(instructorId)
     const newClass = new Class({ ...body, instructor: instructor._id })
 
-    // const authorization = req.get('authorization')
-
     const data = await Class.create(newClass)
     instructor.classes = instructor.classes.concat(data._id)
     await instructor.save()
 
     res.status(201).send({ data })
-    // const body = req.body
-    // const data = await Class.create(body)
-    // res.status(201).send({ data })
   } catch (e) {
     console.log(e)
     handleHttpError(res, 'ERROR_CREATING_CLASS')

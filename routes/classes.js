@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { getClasses, addClass, getClass, updateClass, deleteClass } = require('../controllers/classes')
+const { authMiddleware } = require('../middlewares/authMiddleware')
 const { validatorGetClass, validatorCreateClass } = require('../validators/classes')
 
 /**
@@ -58,7 +59,7 @@ router.get('/classes', getClasses)
  *          description: Invalid input!
  *
  */
-router.post('/classes', validatorCreateClass, addClass)
+router.post('/classes', authMiddleware, validatorCreateClass, addClass)
 
 /**
  * @swagger
@@ -130,7 +131,7 @@ router.get('/classes/:id', validatorGetClass, getClass)
  *          description: Validation exception
  *
  */
-router.put('/classes/:id', validatorCreateClass, validatorGetClass, updateClass)
+router.put('/classes/:id', authMiddleware, validatorCreateClass, validatorGetClass, updateClass)
 
 /**
  * @swagger
@@ -158,6 +159,6 @@ router.put('/classes/:id', validatorCreateClass, validatorGetClass, updateClass)
  *
  *
  */
-router.delete('/classes/:id', validatorGetClass, deleteClass)
+router.delete('/classes/:id', authMiddleware, validatorGetClass, deleteClass)
 
 module.exports = router
