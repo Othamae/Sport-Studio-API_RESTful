@@ -7,7 +7,7 @@ const checkUserRole = async (req, res, next) => {
   const { email, name, password, role } = body
 
   if (role === 'instructor' && !req.body.isAdmin) {
-    return res.status(401).send('Unauthorized')
+    return res.status(401).send('UNAUTHORIZED')
   }
 
   const user = new User({
@@ -19,7 +19,7 @@ const checkUserRole = async (req, res, next) => {
   if (role === 'student') {
     user.ageGroup = body.ageGroup
     if (!user.ageGroup || user.ageGroup === '') {
-      return res.status(400).send('ageGroup is required')
+      return res.status(400).json({ error: 'ageGroup IS_REQUIRED' })
     }
   }
   if (role === 'instructor') {
