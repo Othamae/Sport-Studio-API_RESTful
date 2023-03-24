@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { getAllInstructors, getInstructor, updateInstructor, deleteInstructor } = require('../controllers/instructors')
+const { authMiddleware } = require('../middlewares/authMiddleware')
 
 /**
  * @swagger
@@ -85,7 +86,7 @@ router.get('/instructors/:id', getInstructor)
  *          description: Validation exception
  *
  */
-router.put('/instructors/:id', updateInstructor)
+router.put('/instructors/:id', authMiddleware, updateInstructor)
 
 /**
  * @swagger
@@ -129,6 +130,6 @@ router.put('/instructors/:id', updateInstructor)
  *
  *
  */
-router.delete('/instructors/:id', deleteInstructor)
+router.delete('/instructors/:id', authMiddleware, deleteInstructor)
 
 module.exports = router
