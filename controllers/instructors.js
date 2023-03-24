@@ -1,10 +1,12 @@
 const Instructor = require('../models/instructors')
+const User = require('../models/users')
+
 const { handleHttpError } = require('../middlewares/handleError')
-const { encrypt } = require('../middlewares/handlePassword')
 
 const getAllInstructors = async (req, res) => {
   try {
-    const data = await Instructor.find({}).populate('classes', { instructor: 0 })
+    const data = await User.find({ role: 'instructor' }).populate('classes', { instructor: 0 })
+    // const data = await Instructor.find({}).populate('classes', { instructor: 0 })
     res.send({ data })
   } catch (e) {
     console.log(e)
@@ -12,29 +14,10 @@ const getAllInstructors = async (req, res) => {
   }
 }
 
-const addInstructor = async (req, res) => {
-  try {
-    const { body } = req
-    const { email, name, password } = body
-    const hash = await encrypt(password)
-
-    const instructor = new Instructor({
-      name,
-      email,
-      password: hash
-    })
-    const newInstructor = await Instructor.create(instructor)
-    res.status(201).send({ newInstructor })
-  } catch (e) {
-    console.log(e)
-    handleHttpError(res, 'ERROR_CREATING_INSTRUCTOR')
-  }
-}
-
 const getInstructor = async (req, res) => {
   try {
     const { id } = req.params
-    const data = await Instructor.findById(id).populate('classes', { instructor: 0 })
+    const data = await User.findById(id).populate('classes', { instructor: 0 })
     res.send({ data })
   } catch (e) {
     console.log(e)
@@ -65,4 +48,4 @@ const deleteInstructor = async (req, res) => {
   }
 }
 
-module.exports = { getAllInstructors, addInstructor, getInstructor, updateInstructor, deleteInstructor }
+module.exports = { getAllInstructors, getInstructor, updateInstructor, deleteInstructor }

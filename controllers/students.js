@@ -1,35 +1,15 @@
 
 const Student = require('../models/students')
+const User = require('../models/users')
 const { handleHttpError } = require('../middlewares/handleError')
-const { encrypt } = require('../middlewares/handlePassword')
 
 const getAllStudents = async (req, res) => {
   try {
-    const data = await Student.find({})
+    const data = await User.find({ role: 'student' })
     res.send({ data })
   } catch (e) {
     console.log(e)
     handleHttpError(res, 'ERROR_GETTING_STUDENTS')
-  }
-}
-
-const addStudent = async (req, res) => {
-  try {
-    const { body } = req
-    const { email, name, password, ageGroup } = body
-    const hash = await encrypt(password)
-
-    const student = new Student({
-      name,
-      email,
-      password: hash,
-      ageGroup
-    })
-    const newStudent = await Student.create(student)
-    res.status(201).send({ newStudent })
-  } catch (e) {
-    console.log(e)
-    handleHttpError(res, 'ERROR_CREATING_STUDENT')
   }
 }
 
@@ -67,4 +47,4 @@ const deleteStudent = async (req, res) => {
   }
 }
 
-module.exports = { getAllStudents, addStudent, getStudent, updateStudent, deleteStudent }
+module.exports = { getAllStudents, getStudent, updateStudent, deleteStudent }
