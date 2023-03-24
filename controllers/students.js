@@ -1,5 +1,4 @@
 
-const Student = require('../models/students')
 const User = require('../models/users')
 const { handleHttpError } = require('../middlewares/handleError')
 
@@ -16,7 +15,7 @@ const getAllStudents = async (req, res) => {
 const getStudent = async (req, res) => {
   try {
     const { id } = req.params
-    const data = await Student.findById(id)
+    const data = await User.findById(id)
     res.send({ data })
   } catch (e) {
     console.log(e)
@@ -28,7 +27,7 @@ const updateStudent = async (req, res) => {
   try {
     const { id } = req.params
     const { body } = req
-    const data = await Student.findByIdAndUpdate(id, body, { new: true })
+    const data = await User.findByIdAndUpdate(id, body, { new: true })
     res.send({ data })
   } catch (e) {
     console.log(e)
@@ -39,7 +38,7 @@ const updateStudent = async (req, res) => {
 const deleteStudent = async (req, res) => {
   try {
     const { id } = req.params
-    const data = await Student.deleteOne({ _id: id })
+    const data = await User.deleteOne({ _id: id })
     res.send({ data })
   } catch (e) {
     console.log(e)
