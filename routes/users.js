@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const { userLogin, userRegister, userLogout } = require('../controllers/users')
-const { checkRole, checkUserRole } = require('../middlewares/checkRole')
+// const { authMiddleware } = require('../middlewares/authMiddleware')
+const { checkUserRole } = require('../middlewares/checkRole')
 
 /**
  * @swagger
@@ -34,7 +35,7 @@ const { checkRole, checkUserRole } = require('../middlewares/checkRole')
  *       400:
  *         description: Invalid username/password supplied
  */
-router.get('/user/login', checkRole, userLogin)
+router.get('/user/login', userLogin)
 
 /**
  * @swagger
