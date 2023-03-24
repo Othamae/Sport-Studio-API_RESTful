@@ -8,7 +8,7 @@ const classScheme = new Schema(
     },
     instructor: {
       type: Schema.Types.ObjectId,
-      ref: 'Instructor'
+      ref: 'User'
     },
     level: {
       type: String,

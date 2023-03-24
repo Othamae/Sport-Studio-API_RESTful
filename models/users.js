@@ -20,6 +20,7 @@ const userSchema = new Schema(
       type: String,
       enum: ['student', 'instructor'],
       default: 'student'
+
     },
     ageGroup: {
       type: String,
