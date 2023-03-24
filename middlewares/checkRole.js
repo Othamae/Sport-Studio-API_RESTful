@@ -35,9 +35,11 @@ const checkUserRole = async (req, res, next) => {
     password: await encrypt(password),
     role
   })
-
   if (role === 'student') {
     user.ageGroup = body.ageGroup
+    if (!user.ageGroup || user.ageGroup === '') {
+      return res.status(400).send('ageGroup is required')
+    }
   }
   if (role === 'instructor') {
     user.isAdmin = body.isAdmin
