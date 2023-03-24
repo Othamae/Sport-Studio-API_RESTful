@@ -7,7 +7,7 @@ const { checkUserRole } = require('../middlewares/checkRole')
 /**
  * @swagger
  * /api/user/login:
- *   get:
+ *   post:
  *     summary: Logs user into the system
  *     tags: [Users]
  *     parameters:
@@ -35,7 +35,7 @@ const { checkUserRole } = require('../middlewares/checkRole')
  *       400:
  *         description: Invalid username/password supplied
  */
-router.get('/user/login', userLogin)
+router.post('/user/login', userLogin)
 
 /**
  * @swagger
