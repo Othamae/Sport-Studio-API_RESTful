@@ -6,7 +6,6 @@ const { handleHttpError } = require('../middlewares/handleError')
 const getAllInstructors = async (req, res) => {
   try {
     const data = await User.find({ role: 'instructor' }).populate('classes', { instructor: 0 })
-    // const data = await Instructor.find({}).populate('classes', { instructor: 0 })
     res.send({ data })
   } catch (e) {
     console.log(e)
@@ -17,7 +16,7 @@ const getAllInstructors = async (req, res) => {
 const getInstructor = async (req, res) => {
   try {
     const { id } = req.params
-    const data = await User.findById(id).populate('classes', { instructor: 0 })
+    const data = await Instructor.findById(id).populate('classes', { instructor: 0 })
     res.send({ data })
   } catch (e) {
     console.log(e)
