@@ -8,9 +8,10 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0',
     info: {
-      title: 'Poledance Studio API',
+      title: 'Sport Studio API',
       version: '1.0.0',
-      description: 'Documentation of Poledance Studio API',
+      description:
+      'The Sport Studio API is a RESTful application that provides endpoints for managing classes, instructors, and students.\n\n This documentation describes the API and how to use it to perform operations within the application. \n\nThe API is based on OpenAPI version 3.0.0 and can be accessed through different servers, depending on the development stage of the application. The endpoints are organized into three categories: classes, instructors, and students.\n\n The main data objects are classes and users, and they are described in the schema component. Each object has a set of properties that are described in detail, such as the identifier, name, email, and password for users, and the name, time, capacity, and duration for classes. There are also format restrictions for properties such as time and date. \n\nThis documentation details the ways to access each endpoint, the parameters that must be sent, and the results that can be expected.',
       contact: {
         name: 'Veronica Conesa',
         url: 'https://www.linkedin.com/in/veronica-conesa-gomez/',
@@ -80,6 +81,13 @@ const swaggerOptions = {
             password: 'password',
             role: 'student',
             ageGroup: 'adult'
+          }
+        },
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT'
           }
         }
       }

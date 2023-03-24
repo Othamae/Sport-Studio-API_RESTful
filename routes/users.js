@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { userLogin, userRegister } = require('../controllers/users')
-// const { authMiddleware } = require('../middlewares/authMiddleware')
 const { checkUserRole } = require('../middlewares/checkRole')
 
 /**
@@ -54,6 +53,10 @@ router.post('/user/login', userLogin)
  *           schema:
  *             type: object
  *             properties:
+ *               name:
+ *                 type: string
+ *                 description: The name of the user
+ *                 example: instructor1
  *               email:
  *                 type: string
  *                 description: The email for registration
@@ -65,16 +68,10 @@ router.post('/user/login', userLogin)
  *               role:
  *                 type: string
  *                 description: Type of user (instructor or student)
- *                 enum:
- *                    - instructor
- *                    - student
  *                 example: student
  *               ageGroup:
  *                 type: string
  *                 description: Type of student (child or adult)
- *                 enum:
- *                    - adult
- *                    - child
  *                 example: adult
  *     responses:
  *       200:

@@ -9,7 +9,7 @@ const { validatorGetClass, validatorCreateClass } = require('../validators/class
  * /api/classes:
  *  get:
  *     summary: Find the list of classes
- *     description: Returns the list of all the Poledance classes
+ *     description: Returns the list of all the Sport classes
  *     tags: [Classes]
  *     responses:
  *       200:
@@ -27,37 +27,55 @@ router.get('/classes', getClasses)
  * @swagger
  * /api/classes:
  *  post:
- *     summary: Add a new Poledance class
- *     description: Create a new Poledance class
+ *     summary: Add a new Sport class
+ *     description: Create a new Sport class
  *     tags: [Classes]
+ *     security:
+ *        - bearerAuth: []
+ *     parameters:
+ *        - in: header
+ *          name: Authorization
+ *          description: Access token needed to authorize the request
+ *          required: true
+ *          type: string
  *     requestBody:
  *        description: Add a new class to the system
  *        content:
  *          application/json:
  *             schema:
- *                example:
- *                  name: Class1
- *                  time: 18:00
- *                  instructor: Instructor1
- *                  level: adult
- *                  capacity: 9
- *                  duration:
- *                      lections: 12
- *                      start: 22/03/2023
- *                      end: 07/06/2023
+ *                example: {
+ *                  "name": "Class1",
+ *                  "time": "18:00",
+ *                  "instructor": "641d65ed2fc7f899dcec9b1c",
+ *                  "level": "adult",
+ *                  "capacity": 9,
+ *                  "duration": {
+ *                      "lections": 12,
+ *                      "start": "22/03/2023",
+ *                      "end": "07/06/2023"
+ *                  },
+ *                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+ *                }
  *     required: true
  *     responses:
  *       201:
- *         description: Class successfully created!
+ *         description: The class has been successfully created
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#components/schemas/Class'
- *       405:
- *          description: Invalid input!
+ *               $ref: '#components/schemas/Class'
+ *       400:
+ *         description: Invalid input parameters
+ *       401:
+ *         description: Unauthorized, authentication required
+ *       500:
+ *         description: Internal server error
  *
+ * securityDefinitions:
+ *   bearerAuth:
+ *     type: http
+ *     name: bearer
+ *     bearerFormat: JWT
  */
 router.post('/classes', authMiddleware, validatorCreateClass, addClass)
 
