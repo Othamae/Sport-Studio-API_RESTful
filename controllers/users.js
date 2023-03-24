@@ -49,15 +49,4 @@ const userRegister = async (req, res) => {
   }
 }
 
-const userLogout = async (req, res) => {
-  try {
-    // const user = req.user
-    // const data = await Class.findAllData({}) // ponemos await para esperar xq es una promesa
-    res.send('USER LOGOUT')
-  } catch (e) {
-    console.log('ESTE ES EL ERROR')
-    console.log(e)
-  }
-}
-
-module.exports = { userLogin, userRegister, userLogout }
+module.exports = { userLogin, userRegister }
