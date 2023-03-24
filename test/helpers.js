@@ -1,6 +1,6 @@
 const supertest = require('supertest')
 const { app } = require('../app')
-const Instructor = require('../models/instructors')
+const User = require('../models/users')
 
 const api = supertest(app)
 
@@ -31,9 +31,9 @@ const initialClasses = [
   }
 ]
 
-const getInstructorsDB = async () => {
-  const instructorsDB = await Instructor.find({})
-  return instructorsDB.map(instructor => instructor.toJSON())
+const getUserDB = async () => {
+  const userDB = await User.find({})
+  return userDB.map(user => user.toJSON())
 }
 
-module.exports = { initialClasses, api, getInstructorsDB }
+module.exports = { initialClasses, api, getUserDB }
