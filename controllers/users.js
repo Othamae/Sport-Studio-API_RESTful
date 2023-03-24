@@ -16,6 +16,7 @@ const userLogin = async (req, res) => {
       : await compare(password, user.password)
     if (!(user && passwordCorrect)) {
       handleHttpError(res, 'INCORRECT_USER_OR_PASSWORD', 401)
+      return
     }
     const data = {
       user: user.name,
@@ -38,9 +39,9 @@ const userRegister = async (req, res) => {
     const email = newUser.email
     const checkingEmail = await User.findOne({ email })
     if (checkingEmail) {
-      return res.status(400).send('EMAIL_ALREADY_EXIST')
+      return res.status(403).json({ error: 'EMAIL_ALREADY_EXIST' })
     }
-    const userCreated = await User.create(newUser)
+    const userCreated = await (await User.create(newUser))
     res.status(201).send({ userCreated })
   } catch (e) {
     console.log(e)
