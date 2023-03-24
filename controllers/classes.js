@@ -1,8 +1,7 @@
 
 const Class = require('../models/classes.js')
-const Instructor = require('../models/instructors')
+const User = require('../models/users')
 const { handleHttpError } = require('../middlewares/handleError')
-// const { verifyToken } = require('../middlewares/handleJWT')
 
 const getClasses = async (req, res) => {
   try {
@@ -18,14 +17,15 @@ const addClass = async (req, res) => {
   try {
     const body = req.body
     const instructorId = body.instructor
-    const instructor = await Instructor.findById(instructorId)
+    const instructor = await User.findById(instructorId)
     const newClass = new Class({ ...body, instructor: instructor._id })
 
     const data = await Class.create(newClass)
+    const classCreated = await Class.findById(data._id).populate('instructor', { name: 1, email: 1, _id: 0 })
     instructor.classes = instructor.classes.concat(data._id)
     await instructor.save()
 
-    res.status(201).send({ data })
+    res.status(201).send({ classCreated })
   } catch (e) {
     console.log(e)
     handleHttpError(res, 'ERROR_CREATING_CLASS')
@@ -47,7 +47,7 @@ const updateClass = async (req, res) => {
   try {
     const id = req.params.id
     const body = req.body
-    const data = await Class.findByIdAndUpdate(id, body, { new: true })
+    const data = await Class.findByIdAndUpdate(id, body, { new: true }).populate('instructor', { name: 1, email: 1, _id: 0 })
     res.send({ data })
   } catch (e) {
     console.log(e)
