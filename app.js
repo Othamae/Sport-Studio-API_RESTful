@@ -22,7 +22,7 @@ app.use('/api', userRouter)
 app.use('/api/doc', apiDoc)
 
 app.get('/api', (req, res) => {
-  res.send('Hello Wordl!')
+  res.send('Sport Studio API!')
 })
 
 app.use(notFound)

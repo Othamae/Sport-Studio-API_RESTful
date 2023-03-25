@@ -7,13 +7,21 @@ This API allows you to manage classes, instructors, and students for a sports st
 
 To run the API on your local machine, follow these steps:
 
-1. Clone the repository
+1. Clone the repository - https://github.com/Othamae/Sport-Studio-API_RESTful.git
 2. Install dependencies using `npm install`
 3. Run the API using `npm start`
 
-The API will run on `http://localhost:${process.env.PORT}`
+The API will run locally on `http://localhost:${process.env.PORT}`
+
+
+## Swagger Documentation 
+
+https://sport-studio-apirestful-production.up.railway.app/api/doc/
+
+
 
 ## Endpoints
+
 
 There are four categories of endpoints:
 
@@ -23,6 +31,7 @@ There are four categories of endpoints:
 4. User
 
 Each endpoint can be accessed using HTTP requests, and must be authenticated using a JWT token provided during the login process.
+
 
 ### Classes
 
@@ -34,6 +43,8 @@ The following endpoints are available for classes:
 - `PUT /classes/:id`: update an existing class
 - `DELETE /classes/:id`: delete a specific class by ID
 
+#### Production - https://sport-studio-apirestful-production.up.railway.app/api/classes 
+
 ### Instructors
 
 The following endpoints are available for instructors:
@@ -43,6 +54,8 @@ The following endpoints are available for instructors:
 - `PUT /instructors/:id`: update an existing instructor
 - `DELETE /instructors/:id`: delete a specific instructor by ID
 
+#### Production - https://sport-studio-apirestful-production.up.railway.app/api/instructors 
+
 ### Students
 
 The following endpoints are available for students:
@@ -51,6 +64,8 @@ The following endpoints are available for students:
 - `GET /students/:id`: retrieve a specific student by ID
 - `PUT /students/:id`: update an existing student
 - `DELETE /students/:id`: delete a specific student by ID
+
+#### Production - https://sport-studio-apirestful-production.up.railway.app/api/students 
 
 ### Users
 
