@@ -20,11 +20,11 @@ const { checkUserRole } = require('../middlewares/checkRole')
  *               email:
  *                 type: string
  *                 description: The email for registration
- *                 example: email@example.com
+ *                 example: instructor1@email.com
  *               password:
  *                 type: string
  *                 description: The password for register in clear text
- *                 example: password123
+ *                 example: password1
  *     responses:
  *       200:
  *         description: Successfully Login!
@@ -56,11 +56,11 @@ router.post('/user/login', userLogin)
  *               name:
  *                 type: string
  *                 description: The name of the user
- *                 example: instructor1
+ *                 example: instructor123
  *               email:
  *                 type: string
  *                 description: The email for registration
- *                 example: email@example.com
+ *                 example: instructor123@example.com
  *               password:
  *                 type: string
  *                 description: The password for register in clear text
@@ -68,11 +68,15 @@ router.post('/user/login', userLogin)
  *               role:
  *                 type: string
  *                 description: Type of user (instructor or student)
- *                 example: student
+ *                 example: instructor
  *               ageGroup:
  *                 type: string
  *                 description: Type of student (child or adult)
  *                 example: adult
+ *               isAdmin:
+ *                 type: boolean
+ *                 description: for instructors should be true
+ *                 example: true
  *     responses:
  *       200:
  *         description: Successfully Register!
